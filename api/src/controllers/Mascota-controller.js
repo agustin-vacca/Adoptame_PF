@@ -2,6 +2,21 @@ const { Pet, Vaccines, Diseases, Location } = require("../db.js");
 const { Op } = require("sequelize");
 const Validation = require("./Validation");
 const sumarDias = require("./sumarDias");
+const fs = require("fs");
+//const cloudinary = require("../cloudinary/index")
+
+//CLOUDINARY
+const cloudinary = require('cloudinary').v2;
+const {CLOUD_NAME, API_KEY, API_SECRET} = process.env;
+
+// Configuration 
+cloudinary.config({
+  cloud_name: CLOUD_NAME,
+  api_key: API_KEY,
+  api_secret: API_SECRET,
+  secure: true
+});
+
 
 //CRUD API MASCOTAS
 
@@ -26,6 +41,17 @@ const createMascota = async (req, res) => {
       location,
     } = req.body;
 
+    aux = req.files.image.tempFilePath;
+    
+    const result = await cloudinary.uploader.upload(aux, { folder: "pets" })
+    await fs.unlink(aux, (err => {
+      if (err) 
+        console.log(err);
+      else {
+        console.log(`\nDeleted file: ${aux}`);
+      }
+    }));
+
     const msg = await Validation(req.body);
     if (msg) throw new Error(msg);
 
@@ -48,11 +74,12 @@ const createMascota = async (req, res) => {
       age,
       color,
       description,
-      image,
+      image: result.secure_url,
       identified,
       timewait,
       adopted,
     });
+
     await newMascota.addVaccines(vaccine);
     await newMascota.addDiseases(disease);
     await newMascota.addLocation(location);

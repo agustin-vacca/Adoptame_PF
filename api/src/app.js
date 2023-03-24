@@ -1,4 +1,5 @@
 const express = require("express");
+const fileUpload = require("express-fileupload");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
@@ -9,6 +10,10 @@ const cookieParser = require("cookie-parser");
 require("./db.js");
 
 const app = express();
+app.use(fileUpload({
+  useTempFiles : true,
+  tempFileDir: './uploads'
+}));
 /* app.use(cors()); */
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
