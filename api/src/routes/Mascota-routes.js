@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
+
 const {
   createMascota,
   getMascotas,
   mascotaById,
   deleteMascota,
   updateMascota,
-} = require("../controllers/Mascota-controller");
+} = require("../controllers-Pet/Mascota-controller");
 
 
 router.get("/", getMascotas); //trae todas las mascotas

@@ -1,5 +1,5 @@
 const {Location} = require("../db");
-const {locations} = require("../controllers/arreglos");
+const {locations} = require("../controllers-Pet/arreglos");
 async function precargaLocation(){
     const location = await Location.findAll();
 

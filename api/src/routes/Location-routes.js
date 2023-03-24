@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   createLocation,
   getLocation,
-} = require("../controllers/Location-controller");
+} = require("../controllers-Pet/Location-controller");
 
 
 router.get("/", getLocation); //trae todas las localizaciones

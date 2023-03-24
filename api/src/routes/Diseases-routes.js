@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   createDiseases,
   getDiseases,
-} = require("../controllers/Diseases-controller");
+} = require("../controllers-Pet/Diseases-controller");
 
 
 router.get("/", getDiseases); //trae todas las enfermedades

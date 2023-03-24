@@ -1,5 +1,5 @@
 const {Diseases} = require("../db");
-const {diseases} = require("../controllers/arreglos");
+const {diseases} = require("../controllers-Pet/arreglos");
 
 async function precargaDiseases(){
     const disease = await Diseases.findAll();

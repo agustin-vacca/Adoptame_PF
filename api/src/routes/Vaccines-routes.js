@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   createVaccines,
   getVaccines,
-} = require("../controllers/Vaccines-controller");
+} = require("../controllers-Pet/Vaccines-controller");
 
 
 router.get("/", getVaccines); //trae todas las vacunas
