@@ -1,5 +1,5 @@
 DB_USER= postgres
-DB_PASSWORD= 20959745
+DB_PASSWORD= admin
 DB_HOST= localhost:5432
 DB_NAME= adoptame
 PORT=3000
